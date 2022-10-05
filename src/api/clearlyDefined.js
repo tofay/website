@@ -24,6 +24,7 @@ export const ORIGINS_RUBYGEMS = 'origins/rubygems'
 export const ORIGINS_DEBIAN = 'origins/deb'
 export const ORIGINS_COMPOSER = 'origins/composer'
 export const ORIGINS_POD = 'origins/pod'
+export const ORIGINS_RPM = 'origins/rpm' // Can we skip this? what's it used for
 export const ORIGINS = {
   github: { git: ORIGINS_GITHUB },
   npmjs: { npm: ORIGINS_NPM },
@@ -34,7 +35,8 @@ export const ORIGINS = {
   rubygems: { gem: ORIGINS_RUBYGEMS },
   debian: { deb: ORIGINS_DEBIAN, debsrc: ORIGINS_DEBIAN },
   packagist: { composer: ORIGINS_COMPOSER },
-  cocoapods: { pod: ORIGINS_POD }
+  cocoapods: { pod: ORIGINS_POD },
+  mariner: { rpm: ORIGINS_RPM }
 }
 
 export function getHarvestResults(token, entity) {
@@ -202,6 +204,10 @@ export function getDebianSearch(token, path) {
 
 export function getDebianRevisions(token, path) {
   return get(url(`${ORIGINS_DEBIAN}/${path}/revisions`), token)
+}
+
+export function getRpmRevisions(token, path) {
+  return get(url(`${ORIGINS_RPM}/${path}/revisions`), token)
 }
 
 export function getNugetSearch(token, path) {

@@ -16,7 +16,8 @@ import {
   NuGetVersionPicker,
   RubyGemsVersionPicker,
   ComposerVersionPicker,
-  CocoaPodsVersionPicker
+  CocoaPodsVersionPicker,
+  RpmVersionPicker
 } from './'
 import { getGitHubRevisions } from '../api/clearlyDefined'
 import { clone } from 'lodash'
@@ -30,6 +31,7 @@ import maven from '../images/maven.png'
 import nuget from '../images/nuget.png'
 import composer from '../images/packagist.png'
 import pod from '../images/pod.png'
+import rpm from '../images/rpm.png'
 
 class HarvestQueueList extends React.Component {
   static propTypes = {
@@ -111,6 +113,9 @@ class HarvestQueueList extends React.Component {
         {request.provider === 'cocoapods' && (
           <CocoaPodsVersionPicker request={request} onChange={this.versionChanged.bind(this, request)} />
         )}
+        {request.provider === 'mariner' && (
+          <RpmVersionPicker request={request} onChange={this.versionChanged.bind(this, request)} />
+        )}
         <i className="fas fa-times list-trash" onClick={this.removeRequest.bind(this, request)} />
       </div>
     )
@@ -156,6 +161,7 @@ class HarvestQueueList extends React.Component {
     if (request.provider === 'debian') return debian
     if (request.provider === 'packagist') return composer
     if (request.provider === 'cocoapods') return pod
+    if (request.provider === 'mariner') return rpm
     return null
   }
 

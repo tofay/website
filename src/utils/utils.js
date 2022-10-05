@@ -11,6 +11,7 @@ import gemImage from '../images/gem.png'
 import pypiImage from '../images/pypi.png'
 import debianImage from '../images/debian.png'
 import composerImage from '../images/packagist.png'
+import rpmImage from '../images/rpm.png'
 
 const { set } = require('lodash')
 
@@ -117,7 +118,8 @@ const types = [
   { value: 'gem', label: 'Gem', provider: 'rubygems' },
   { value: 'sourcearchive', label: 'SourceArchive' },
   { value: 'deb', label: 'Deb', provider: 'debian' },
-  { value: 'debsrc', label: 'Debian Sources' }
+  { value: 'debsrc', label: 'Debian Sources' },
+  { value: 'rpm', label: 'RPM', provider: 'mariner' }
 ]
 
 const providers = [
@@ -130,7 +132,8 @@ const providers = [
   { value: 'cocoapods', label: 'CocoaPods', image: podImage, type: 'pod' },
   { value: 'cratesio', label: 'Crates.io', image: crateImage, type: 'crate' },
   { value: 'debian', label: 'Debian', image: debianImage, type: 'deb' },
-  { value: 'packagist', label: 'Packagist', image: composerImage, type: 'composer' }
+  { value: 'packagist', label: 'Packagist', image: composerImage, type: 'composer' },
+  { value: 'mariner', label: 'Mariner', image: rpmImage, type: 'rpm' }
 ]
 
 const multiEditableFields = ['licensed.declared']

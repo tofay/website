@@ -15,6 +15,7 @@ import gem from '../images/gem.png'
 import pypi from '../images/pypi.png'
 import debian from '../images/debian.png'
 import composer from '../images/packagist.png'
+import rpm from '../images/rpm.png'
 
 const types = {
   npm: npm,
@@ -26,7 +27,8 @@ const types = {
   crate: crate,
   pod: pod,
   deb: debian,
-  composer: composer
+  composer: composer,
+  rpm: rpm
 }
 
 export default class FilterBar extends Component {

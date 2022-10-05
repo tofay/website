@@ -28,7 +28,8 @@ const entityMapping = [
   { hostnames: ['pypi.org'], parser: pypiParser },
   { hostnames: ['rubygems.org'], parser: rubygemsParser },
   { hostnames: ['ftp.debian.org'], parser: debianParser },
-  { hostnames: ['packagist.org'], parser: composerParser }
+  { hostnames: ['packagist.org'], parser: composerParser },
+  { hostnames: ['mariner'], parser: rpmParser }
 ]
 
 function npmParser(path) {
@@ -36,7 +37,7 @@ function npmParser(path) {
   const pathSegments = path.split('/')
   // if the first segment is a namespace name, use it
   if (pathSegments[1].startsWith('@')) [, namespace, name, , version] = pathSegments
-  else [, name, , version] = pathSegments
+  else[, name, , version] = pathSegments
   return new EntitySpec('npm', 'npmjs', namespace, name, version)
 }
 
@@ -92,6 +93,16 @@ function debianParser(path) {
   const [, version] = withoutExtension.split(`${name}_`)
 
   return new EntitySpec('deb', 'debian', null, name, version)
+}
+
+function rpmParser(path) {
+  const extensions = ['.rpm', '.tar.gz', '.tar.xz']
+  const expStr = extensions.join('|')
+  const [, , , , name, packageName] = path.split('/')
+  const withoutExtension = packageName.replace(new RegExp('\\b(' + expStr + ')\\b', 'gi'), '').replace(/\s{2,}/g, '')
+  const [, version] = withoutExtension.split(`${name}_`)
+
+  return new EntitySpec('rpm', 'mariner', null, name, version)
 }
 
 function composerParser(path, hash) {

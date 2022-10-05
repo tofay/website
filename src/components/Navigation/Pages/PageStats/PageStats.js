@@ -18,6 +18,7 @@ import composer from '../../../../images/packagist.png'
 import gem from '../../../../images/gem.png'
 import pypi from '../../../../images/pypi.png'
 import debian from '../../../../images/debian.png'
+import rpm from '../../../../images/rpm.png'
 import { uiNavigation } from '../../../../actions/ui'
 import { ROUTE_STATS } from '../../../../utils/routingConstants'
 import UseData from '../../../../images/UseData.png'
@@ -38,7 +39,8 @@ const types = {
   deb: debian,
   debsrc: debian,
   composer: composer,
-  pod: pod
+  pod: pod,
+  rpm: rpm
 }
 
 class PageStats extends Component {
